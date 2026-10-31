@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinkit - Grocery Delivery</title>
+    <!-- <link rel="stylesheet" href="blinkit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #111;
+}
+
+.navbar {
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 20px;
+}
+
+.nav-box {
+    max-width: 1200px;
+    height: 70px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f4c430;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #0c831f;
+}
+
+.location h3 {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.location p {
+    font-size: 11px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.search-bar {
+    flex: 1;
+    max-width: 500px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.search-bar i {
+    color: #777;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.login-btn {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.cart-btn {
+    background: #0c831f;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.banner {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.banner-text {
+    position: relative;
+    z-index: 2;
+    background: rgba(12, 131, 31, 0.85);
+    color: #fff;
+    padding: 35px 30px;
+    width: 100%;
+}
+.shop-btn {
+    background: #fff;
+    color: #0c831f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.promo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.promo-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 150px;
+}
+
+
+.promo-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.promo-info {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pharmacy .promo-info {
+    background: rgba(232, 245, 233, 0.9);
+    color: #1b5e20;
+}
+
+.pet .promo-info {
+    background: rgba(255, 253, 231, 0.9);
+    color: #f57f17;
+}
+
+.baby .promo-info {
+    background: rgba(252, 228, 236, 0.9);
+    color: #880e4f;
+}
+
+.promo-info h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.promo-info p {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.order-btn {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.item-img {
+    height: 70px;
+    margin-bottom: 8px;
+}
+
+.item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.item span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #222;
+}
+
+@media (max-width: 900px) {
+    .promo-grid {
+        grid-template-columns: 1fr;
+    }
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .location {
+        display: none;
+    }
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.shop-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.shop-btn:active {
+    transform: translateY(0);
+}
+
+.promo-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 150px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.promo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-btn {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    width: fit-content;
+    transition: background-color 0.2s ease;
+}
+
+.order-btn:hover {
+    background: #333;
+}
+
+.item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.item:hover .item-img img {
+    transform: scale(1.05);
+}
+
+.item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;}
+</style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-box">
+            <div class="nav-left">
+                <a class="logo">blink<span>it</span></a>
+                <div class="location">
+                    <h3>Delivery in 17 minutes</h3>
+                    <p>NH 58, Meerut, Uttar... <i class="fa-solid fa-caret-down"></i></p>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder='Search "Chocolate"'>
+            </div>
+            
+            <div class="nav-right">
+                <button class="login-btn">Login</button>
+                <button class="cart-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> My Cart
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+
+        <section class="banner">
+            <img class="banner-bg" src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80" alt="Banner Image">
+            <div class="banner-text">
+                <h1>Stock up on daily essentials</h1>
+                <p>Get farm-fresh goodness & a range of exotic fruits, vegetables, eggs & more</p>
+                <button class="shop-btn">Shop Now</button>
+            </div>
+        </section>
+
+        <section class="promo-grid">
+            <div class="promo-card pharmacy">
+                <img class="promo-bg" src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80" alt="Pharmacy">
+                <div class="promo-info">
+                    <h3>Pharmacy at your doorstep!</h3>
+                    <p>Cough syrups, pain relief sprays & more</p>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="promo-card pet">
+                <img class="promo-bg" src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80" alt="Pet Supplies">
+                <div class="promo-info">
+                    <h3>Pet care supplies at your door</h3>
+                    <p>Food, treats, toys & more</p>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="promo-card baby">
+                <img class="promo-bg" src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80" alt="Baby Care">
+                <div class="promo-info">
+                    <h3>No time for a diaper run?</h3>
+                    <p>Get baby care essentials</p>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-grid">
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=200&q=80" alt="Paan Corner"></div>
+                <span>Paan Corner</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=200&q=80" alt="Dairy"></div>
+                <span>Dairy, Bread & Eggs</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=200&q=80" alt="Fruits"></div>
+                <span>Fruits & Vegetables</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=200&q=80" alt="Drinks"></div>
+                <span>Cold Drinks & Juices</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=200&q=80" alt="Snacks"></div>
+                <span>Snacks & Munchies</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=200&q=80" alt="Instant Food"></div>
+                <span>Breakfast & Instant Food</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?auto=format&fit=crop&w=200&q=80" alt="Sweets"></div>
+                <span>Sweet Tooth</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=200&q=80" alt="Bakery"></div>
+                <span>Bakery & Biscuits</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=200&q=80" alt="Tea Coffee"></div>
+                <span>Tea, Coffee & Milk</span>
+            </div>
+            <div class="item">
+                <div class="item-img"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=200&q=80" alt="Atta Rice"></div>
+                <span>Atta, Rice & Dal</span>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
